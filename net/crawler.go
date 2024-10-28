@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -10,15 +10,15 @@ import (
 	"time"
 )
 
-func fetch(url string) string{
+func fetch(url string) string {
 	fmt.Println("Fetch Url", url)
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", url, nil)
 
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "+
 		"AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36")
 	resp, err := client.Do(req)
-	if err != nil{
+	if err != nil {
 		fmt.Println("Http Get error", err)
 	}
 	if resp.StatusCode != 200 {
@@ -26,14 +26,14 @@ func fetch(url string) string{
 	}
 
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("Read error", err)
 	}
 	return string(body)
 }
 
-func parseUrls(url string){
+func parseUrls(url string) {
 	// get fetch body
 	body := fetch(url)
 
@@ -49,9 +49,9 @@ func parseUrls(url string){
 	}
 }
 
-func main(){
+func main() {
 	start := time.Now()
-	
+
 	for i := 0; i < 10; i++ {
 		parseUrls("https://movie.douban.com/top250?start=" + strconv.Itoa(25*i))
 	}

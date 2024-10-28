@@ -1,8 +1,8 @@
-package main
+package chap1
 
 import "fmt"
 
-func main() {
+func q1() {
 	forLoop()
 	gotoLoop()
 	gotoArrayLoop()

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"gopher/chap1"
 )
 
 func main() {
@@ -9,6 +10,7 @@ func main() {
 	insertTime()
 	fmt.Println("return", test())
 	fmt.Println("return", other())
+	chap1.Hello()
 }
 
 // defer run after return, before function end.
