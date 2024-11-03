@@ -1,21 +1,18 @@
 package chap1
 
-import (
-	"fmt"
-	"unicode/utf8"
-)
+import "fmt"
 
-func q3() {
-	tree()
-	count("asSASA ddd dsjkdsjs dk")
-}
-func tree() {
-	for i := 0; i < 100; i++ {
-		for j := 0; j <= i; j++ {
-			fmt.Print("A")
+
+func q2() {
+	for i := 1; i <= 100; i++ {
+		if i%3 == 0 { // first judge
+			fmt.Println("Fizz")
+		} else {
+			if i%5 == 0 { // second judge
+				fmt.Println("Buzz")
+			} else {
+				fmt.Println(i)
+			}
 		}
 	}
-}
-func count(str string) int {
-	return utf8.RuneCountInString(str)
 }
